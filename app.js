@@ -9,6 +9,11 @@ var passport = require('passport');
 var mongoose = require('mongoose');
 var db = require('./helper/database');
 
+require('./models/Game');
+
+var Game = mongoose.model('games');
+
+
 //load routes
 var games = require('./routes/games');
 var users = require('./routes/users');
@@ -76,10 +81,17 @@ app.get('/about', function(req, res){
     res.render('about');
 });
 
+
 //use our routes
 app.use('/game', games);
 app.use('/users', users);
 
+app.get('/global', function(req, res){
+    res.render('global',{
+        games:Game
+        
+    });
+});
 //connects server to port
 var port = process.env.PORT || 5000;
  

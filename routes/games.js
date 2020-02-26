@@ -11,7 +11,7 @@ var Game = mongoose.model('games');
 
 router.get('/games', ensureAuthenticated , function(req, res){
     Game.find({user:req.user.id}).then(function(games){
-        console.log("Fetch Route ");
+        console.log("Fetch Route");
         console.log(games);
         res.render('gameentry/index',{
             games:games
@@ -19,6 +19,7 @@ router.get('/games', ensureAuthenticated , function(req, res){
     });
     
 });
+
 
 router.get('/gameentry/gameentryadd', ensureAuthenticated, function(req, res){
     res.render('gameentry/gameentryadd');
@@ -41,6 +42,7 @@ router.get('/gameentry/gameentryedit/:id', ensureAuthenticated , function(req, r
         
     })
 });
+
 
 //Post Requests
 router.post('/gameentry', ensureAuthenticated ,function(req,res){
