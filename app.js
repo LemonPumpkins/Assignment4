@@ -87,11 +87,15 @@ app.use('/game', games);
 app.use('/users', users);
 
 app.get('/global', function(req, res){
-    res.render('global',{
-        games:Game
-        
-    });
+        Game.find().then(function(games){
+            console.log("Fetch Global Games");
+            res.render('global',{
+                games:games
+            });
+    
+        });
 });
+
 //connects server to port
 var port = process.env.PORT || 5000;
  
